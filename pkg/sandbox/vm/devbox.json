@@ -1,0 +1,24 @@
+{
+  "packages": [
+    "go@latest",
+    "golangci-lint@latest"
+  ],
+  "env": {
+    "AR": "/usr/bin/ar",
+    "AS": "/usr/bin/as",
+    "CC": "/usr/bin/cc",
+    "CXX": "/usr/bin/c++",
+    "LD": "/usr/bin/ld",
+    "NM": "/usr/bin/nm",
+    "PATH": "$PWD/bin:$PATH"
+  },
+  "shell": {
+    "init_hook": "unset LIBRARY_PATH LD_LIBRARY_PATH",
+    "scripts": {
+      "build": [
+        "go build -o bin/dxvm ./cmd/dxvm",
+        "go run ./cmd/dxvmsign bin/dxvm"
+      ]
+    }
+  }
+}

@@ -1,8 +1,9 @@
 module go.jetpack.io/pkg
 
-go 1.20
+go 1.21
 
 require (
+	github.com/Code-Hex/vz/v3 v3.0.6
 	github.com/cavaliergopher/grab/v3 v3.0.1
 	github.com/codeclysm/extract/v3 v3.1.1
 	github.com/coreos/go-oidc/v3 v3.6.0
@@ -20,9 +21,11 @@ require (
 	github.com/spf13/cobra v1.7.0
 	github.com/stretchr/testify v1.8.4
 	golang.org/x/oauth2 v0.12.0
+	golang.org/x/sys v0.12.0
 )
 
 require (
+	github.com/Code-Hex/go-infinity-channel v1.0.0 // indirect
 	github.com/ProtonMail/go-crypto v0.0.0-20230217124315-7d5c6f04bbb8 // indirect
 	github.com/cloudflare/circl v1.3.3 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
@@ -43,7 +46,7 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/ulikunitz/xz v0.5.11 // indirect
 	golang.org/x/crypto v0.13.0 // indirect
-	golang.org/x/sys v0.12.0 // indirect
+	golang.org/x/mod v0.13.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
