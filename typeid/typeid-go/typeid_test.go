@@ -210,3 +210,39 @@ func TestConstructorError(t *testing.T) {
 	assert.Error(t, err)
 	assert.True(t, errors.Is(err, typeid.ErrConstructor))
 }
+
+func TestLazy(t *testing.T) {
+	tid, err := typeid.New[TestID]()
+	assert.NoError(t, err)
+
+	// Parse a lazy typeid
+	lazy := typeid.LazyParse[TestID](tid.String())
+	// Get the typeid
+	lazyID, err := lazy.Parse()
+	assert.NoError(t, err)
+	assert.Equal(t, tid, lazyID)
+	assert.Equal(t, TestID{}.Prefix(), lazyID.Prefix())
+
+	// create a bad lazy typeid
+	lazy = typeid.LazyParse[TestID]("bad")
+	_, err = lazy.Parse()
+	assert.Error(t, err)
+
+	// create a bad lazy typeid v2
+	lazy = typeid.LazyParse[TestID]("bad_01hrb0hchceaka3pcjq1qaf7m1")
+	_, err = lazy.Parse()
+	assert.Error(t, err)
+
+	// Test AnyID
+
+	lazyAnyID := typeid.LazyParse[typeid.AnyID](tid.String())
+	// Get the typeid
+	anyID, err := lazyAnyID.Parse()
+	assert.NoError(t, err)
+	// The types don't match because one is untyped
+	assert.NotEqual(t, tid, anyID)
+	// But the underlying values are the same
+	assert.Equal(t, tid.UUID(), anyID.UUID())
+	// ana the typeid strings should be the same as well
+	assert.Equal(t, tid.String(), anyID.String())
+}
